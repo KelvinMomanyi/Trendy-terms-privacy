@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRENDY - AI-Powered Shopping Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .content-box {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #764ba2;
+            font-size: 1.8rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .feature-card h4 {
+            color: white;
+            margin-top: 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        footer {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .legal-links {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legal-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: 2px solid #667eea;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .legal-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-box {
+                padding: 20px;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>TRENDY</h1>
+            <p class="tagline">AI-Powered Personalized Shopping Discovery</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <nav>
+            <a href="#overview">Overview</a>
+            <a href="#features">Features</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#data-collection">Data Collection</a>
+            <a href="#personalization">Personalization</a>
+            <a href="#privacy">Privacy & Security</a>
+            <a href="#legal">Legal</a>
+        </nav>
+
+        <div id="overview" class="content-box">
+            <h2>Application Overview</h2>
+            <p>TRENDY is an advanced AI-powered shopping discovery platform built as a Shopify Mini app. It provides users with highly personalized product recommendations through intelligent filtering, behavioral tracking, and real-time AI suggestions.</p>
+            
+            <h3>Core Technology Stack</h3>
+
+            <div class="alert info">
+                <strong>Note:</strong> TRENDY operates within the Shopify ecosystem and follows all Shopify merchant and buyer policies.
+            </div>
+        </div>
+
+        <div id="features" class="content-box">
+            <h2>Key Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🎯 Smart Personalization</h4>
+                    <p>Leverages Shopify buyer attributes including gender affinity and category preferences to curate product feeds tailored to individual users.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🔥 Trending Discovery</h4>
+                    <p>Interactive carousel showcasing trending products with momentum indicators, social proof metrics, and time-based filtering.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🤖 AI-Powered Suggestions</h4>
+                    <p>Real-time complementary product recommendations and upsell suggestions powered by machine learning algorithms.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🎨 Immersive Grid View</h4>
+                    <p>3D perspective product grid with horizontal scrolling, momentum physics, and flip card product details.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>❤️ Favorites System</h4>
+                    <p>Save products to favorites with instant AI recommendations for complementary items.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h4>🛒 Seamless Shopping</h4>
+                    <p>One-click add to cart and direct checkout integration with Shopify's native cart system.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="architecture" class="content-box">
+            <h2>Technical Architecture</h2>
+            
+            <h3>Component Hierarchy</h3>
+            <ol>
+                <li><strong>TrendySlider (Main Component)</strong>
+                    <ul>
+                        <li>Orchestrates product discovery experience</li>
+                        <li>Manages state for carousel, filters, and AI suggestions</li>
+                        <li>Coordinates personalization pipeline</li>
+                    </ul>
+                </li>
+                <li><strong>ProductGrid</strong>
+                    <ul>
+                        <li>Displays products in immersive 3D grid layout</li>
+                        <li>Handles touch/pointer interactions with momentum scrolling</li>
+                        <li>Shows product detail modals</li>
+                    </ul>
+                </li>
+                <li><strong>TrendyFilters</strong>
+                    <ul>
+                        <li>Category, price, and time-based filtering</li>
+                        <li>Drawer interface with swipe gestures</li>
+                    </ul>
+                </li>
+                <li><strong>AISuggestionCard</strong>
+                    <ul>
+                        <li>Displays AI-generated product recommendations</li>
+                        <li>Triggered by cart additions or favorites</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3>Product Pipeline (6-Stage Process)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Stage</th>
+                        <th>Description</th>
+                        <th>Purpose</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Raw Products</td>
+                        <td>Combine recommended & popular products from Shopify</td>
+                        <td>Initial data aggregation</td>
+                    </tr>
+                    <tr>
+                        <td>2. Personalization</td>
+                        <td>Apply interest-based scoring using user preferences</td>
+                        <td>Relevance ranking</td>
+                    </tr>
+                    <tr>
+                        <td>3. Gender Filtering</td>
+                        <td>Filter by gender affinity (MALE/FEMALE/NEUTRAL)</td>
+                        <td>Demographic targeting</td>
+                    </tr>
+                    <tr>
+                        <td>4. Social Proof</td>
+                        <td>Add engagement metrics (saves, momentum, trending)</td>
+                        <td>Social validation</td>
+                    </tr>
+                    <tr>
+                        <td>5. User Filters</td>
+                        <td>Apply category, price, and time filters</td>
+                        <td>User refinement</td>
+                    </tr>
+                    <tr>
+                        <td>6. Final Output</td>
+                        <td>Top 20 products with fallback logic</td>
+                        <td>Optimized feed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="data-collection" class="content-box">
+            <h2>Data Collection & Processing</h2>
+            
+            <h3>Information Collected</h3>
+            
+            <h4>1. Shopify Buyer Attributes</h4>
+            <ul>
+                <li><strong>Gender Affinity:</strong> MALE, FEMALE, or NEUTRAL classification</li>
+                <li><strong>Category Affinities:</strong> User's interest in product categories with ancestor hierarchies</li>
+                <li><strong>Source:</strong> Provided by Shopify's <code>useBuyerAttributes()</code> hook</li>
+            </ul>
+
+            <h4>2. Behavioral Tracking</h4>
+            <ul>
+                <li><strong>Product Swipes:</strong> Tracks which products users view in carousel</li>
+                <li><strong>Add to Cart:</strong> Records cart additions with timestamps</li>
+                <li><strong>Favorites/Saves:</strong> Monitors saved products</li>
+                <li><strong>Product Views:</strong> Logs product detail page visits</li>
+            </ul>
+
+            <h4>3. User Preferences (Stored Locally)</h4>
+            <ul>
+                <li><strong>Interests:</strong> Array of category preferences</li>
+                <li><strong>Liked Products:</strong> IDs of favorited items</li>
+                <li><strong>Disliked Products:</strong> Products to exclude from recommendations</li>
+            </ul>
+
+            <h4>4. Shopping Cart Data</h4>
+            <ul>
+                <li>Product ID and variant ID</li>
+                <li>Product title and price</li>
+                <li>Quantity</li>
+                <li>Product type and tags</li>
+            </ul>
+
+            <div class="alert">
+                <strong>Important:</strong> All behavioral tracking is processed through the custom <code>personalizationService</code> and stored locally in the user's browser. No personal identification data is collected.
+            </div>
+        </div>
+
+        <div id="personalization" class="content-box">
+            <h2>Personalization Engine</h2>
+            
+            <h3>How Personalization Works</h3>
+            
+            <h4>1. Interest Mapping</h4>
+            <p>The app combines multiple data sources to understand user preferences:</p>
+            <ul>
+                <li>User's explicitly tracked interests from behavior</li>
+                <li>Shopify's category affinity data</li>
+                <li>Product category ancestor hierarchies</li>
+            </ul>
+
+            <h4>2. Product Scoring Algorithm</h4>
+            <p>Products are scored based on:</p>
+            <ul>
+                <li><strong>Category Match:</strong> Products in user's interest categories receive higher scores</li>
+                <li><strong>Behavioral Signals:</strong> Previous likes, cart additions, and views influence ranking</li>
+                <li><strong>Dislike Filtering:</strong> Removes products user has explicitly disliked</li>
+                <li><strong>Gender Alignment:</strong> Filters products based on gender affinity when available</li>
+            </ul>
+
+            <h4>3. AI Recommendation Service</h4>
+            <p>The <code>aiRecommendationService</code> provides:</p>
+            <ul>
+                <li><strong>Complementary Products:</strong> Suggests items that pair well with viewed/favorited products</li>
+                <li><strong>Upsell Suggestions:</strong> Recommends higher-value or related items based on cart contents</li>
+                <li><strong>Context-Aware Messaging:</strong> Generates personalized recommendation copy</li>
+            </ul>
+
+            <div class="alert success">
+                <strong>Privacy First:</strong> All AI processing happens using aggregated, anonymized behavioral patterns. Individual user identity is never part of the recommendation algorithm.
+            </div>
+        </div>
+
+        <div id="privacy" class="content-box">
+            <h2>Privacy & Security</h2>
+            
+            <h3>Data Protection Principles</h3>
+            
+            <h4>1. No Personal Identification</h4>
+            <p>TRENDY does not collect or store:</p>
+            <ul>
+                <li>Names, email addresses, or contact information</li>
+                <li>Payment information (handled by Shopify)</li>
+                <li>Location data beyond what Shopify provides</li>
+                <li>Device identifiers or IP addresses</li>
+            </ul>
+
+            <h4>2. Local-First Storage</h4>
+            <p>User preferences and behavioral data are stored locally in the browser using:</p>
+            <ul>
+                <li>React state management (session-based)</li>
+                <li>No server-side user profile databases</li>
+                <li>Data persists only during the shopping session</li>
+            </ul>
+
+            <h4>3. Shopify Integration Security</h4>
+            <p>All e-commerce transactions leverage Shopify's secure infrastructure:</p>
+            <ul>
+                <li>PCI-compliant payment processing</li>
+                <li>Encrypted checkout process</li>
+                <li>Shopify's privacy and data handling policies apply</li>
+            </ul>
+
+            <h4>4. Third-Party Data Sharing</h4>
+            <p>TRENDY shares data only with:</p>
+            <ul>
+                <li><strong>Shopify:</strong> For cart operations and product data</li>
+                <li><strong>No other third parties:</strong> No advertising networks, analytics services (beyond Shopify's), or data brokers</li>
+            </ul>
+
+            <h3>User Rights</h3>
+            <ul>
+                <li><strong>Right to Access:</strong> Users can view their behavioral patterns through the app interface</li>
+                <li><strong>Right to Deletion:</strong> Clear browser data to remove all locally stored preferences</li>
+                <li><strong>Right to Opt-Out:</strong> Disable personalization features through filter settings</li>
+            </ul>
+        </div>
+
+        <div id="legal" class="content-box">
+            <h2>Legal Information</h2>
+            
+            <h3>Official Documentation</h3>
+            <p>For complete legal terms and policies, please review:</p>
+            
+            <div class="legal-links">
+                <a href="https://www.shopify.com/legal/privacy" target="_blank" rel="noopener noreferrer">
+                    Privacy Policy
+                </a>
+                <a href="https://www.shopify.com/legal/terms" target="_blank" rel="noopener noreferrer">
+                    Terms of Service
+                </a>
+                <a href="https://www.shopify.com/legal/cookies" target="_blank" rel="noopener noreferrer">
+                    Cookie Policy
+                </a>
+                <a href="https://www.shopify.com/legal/dpa" target="_blank" rel="noopener noreferrer">
+                    Data Processing Agreement
+                </a>
+            </div>
+
+            <div class="alert info">
+                <strong>Note:</strong> As a Shopify Mini app, TRENDY operates under Shopify's legal framework. The links above direct to Shopify's official legal documentation which governs all apps in their ecosystem.
+            </div>
+
+            <h3>Compliance</h3>
+            <ul>
+                <li><strong>GDPR Compliant:</strong> Adheres to EU data protection regulations through Shopify's infrastructure</li>
+                <li><strong>CCPA Compliant:</strong> Meets California Consumer Privacy Act requirements</li>
+                <li><strong>Shopify App Store Guidelines:</strong> Follows all Shopify developer policies and standards</li>
+            </ul>
+
+            <h3>Contact Information</h3>
+            <p>For questions about how TRENDY handles your data:</p>
+            <ul>
+                <li><strong>Merchant Support:</strong> Contact through Shopify merchant dashboard</li>
+                <li><strong>Shopify Privacy Team:</strong> <a href="https://www.shopify.com/legal/privacy/contact" target="_blank">Privacy Contact Form</a></li>
+                <li><strong>General Shopify Support:</strong> Available 24/7 through Shopify Help Center</li>
+            </ul>
+        </div>
+
+        <footer>
+            <h3>Additional Resources</h3>
+            <div class="legal-links">
+                <a href="https://www.shopify.com/legal/privacy/buyers" target="_blank" rel="noopener noreferrer">
+                    Buyer Privacy Policy
+                </a>
+                <a href="https://www.shopify.com/legal/aup" target="_blank" rel="noopener noreferrer">
+                    Acceptable Use Policy
+                </a>
+                <a href="https://help.shopify.com/en/manual/your-account/privacy" target="_blank" rel="noopener noreferrer">
+                    Privacy Settings Help
+                </a>
+                <a href="https://www.shopify.com/legal/ccpa" target="_blank" rel="noopener noreferrer">
+                    California Privacy Rights
+                </a>
+            </div>
+            <p style="margin-top: 40px; color: #666;">
+                TRENDY is a Shopify Mini app. All transactions and data handling are governed by Shopify's policies.<br>
+                Last Updated: November 2024
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
